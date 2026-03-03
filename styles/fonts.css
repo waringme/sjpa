@@ -4664,7 +4664,7 @@
   src: url('../fonts/AdobeCleanBlack.woff') format('woff');
 }
 
-/* SJP hero banner: NoeDisplaySJP-Bold (local file used if present, else public Noe Display Bold) */
+/* SJP hero banner: NoeDisplaySJP-Bold (local/AEM fonts first, then CDN so localhost matches AEM) */
 @font-face {
   font-family: 'NoeDisplaySJP-Bold';
   font-display: swap;
@@ -4673,11 +4673,13 @@
   src: local('NoeDisplaySJP-Bold'),
        url('../fonts/NoeDisplaySJP-Bold.woff2') format('woff2'),
        url('../fonts/NoeDisplaySJP-Bold.woff') format('woff'),
+       url('https://main--sjp--waringme.aem.page/fonts/NoeDisplaySJP-Bold.woff2') format('woff2'),
+       url('https://main--sjp--waringme.aem.page/fonts/NoeDisplaySJP-Bold.woff') format('woff'),
        url('https://db.onlinewebfonts.com/t/d5057d1717ee8f3db3350cf9a6252f82.woff2') format('woff2'),
        url('https://db.onlinewebfonts.com/t/d5057d1717ee8f3db3350cf9a6252f82.woff') format('woff');
 }
 
-/* SJP hero "harder" subhead: SJPSouthCoast (add fonts/SJPSouthCoast.woff2 or .woff when available) */
+/* SJP hero "harder" subhead: SJPSouthCoast (local/AEM first so localhost matches AEM) */
 @font-face {
   font-family: 'SJPSouthCoast';
   font-display: swap;
@@ -4685,7 +4687,9 @@
   font-style: normal;
   src: local('SJPSouthCoast'),
        url('../fonts/SJPSouthCoast.woff2') format('woff2'),
-       url('../fonts/SJPSouthCoast.woff') format('woff');
+       url('../fonts/SJPSouthCoast.woff') format('woff'),
+       url('https://main--sjp--waringme.aem.page/fonts/SJPSouthCoast.woff2') format('woff2'),
+       url('https://main--sjp--waringme.aem.page/fonts/SJPSouthCoast.woff') format('woff');
 }
 
 /* stylelint-disable max-line-length */
