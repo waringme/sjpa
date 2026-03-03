@@ -1,8 +1,14 @@
 <!-- Adobe Target: early hints so experience loads faster -->
 <link rel="preconnect" href="https://publish-p147324-e1846469.adobeaemcloud.com" crossorigin/>
 <link rel="preload" href="https://publish-p147324-e1846469.adobeaemcloud.com/content/dam/st-james-place/en/at.js" as="script"/>
-<!-- Adobe Target: disable body hiding so nav and page show immediately -->
-<script>window.targetGlobalSettings = window.targetGlobalSettings || {}; window.targetGlobalSettings.bodyHidingEnabled = false;</script>
+<!-- Adobe Target: config must be set before at.js runs -->
+<script>
+  window.targetGlobalSettings = window.targetGlobalSettings || {};
+  window.targetGlobalSettings.bodyHidingEnabled = false;
+  window.targetPageParams = function() {
+    return { "at_property": "549d426b-0bcc-be60-ce27-b9923bfcad4f" };
+  };
+</script>
 <!-- Adobe Target at.js (async so it does not block first paint) -->
 <script language="JavaScript" type="text/javascript" src="https://publish-p147324-e1846469.adobeaemcloud.com/content/dam/st-james-place/en/at.js" async></script>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
