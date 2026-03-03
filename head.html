@@ -1,3 +1,37 @@
+<script>
+  // Adobe Target: pre-hiding snippet to prevent flicker while at.js loads
+  (function() {
+    var style = document.createElement('style');
+    style.id = 'at-prehiding';
+    style.innerHTML = 'body { opacity: 0 !important; }';
+    document.head.appendChild(style);
+    setTimeout(function() {
+      var preHidingStyle = document.getElementById('at-prehiding');
+      if (preHidingStyle) preHidingStyle.parentNode.removeChild(preHidingStyle);
+    }, 3000);
+  })();
+</script>
+<!-- Adobe Target: replace src with your at.js URL (e.g. AEM publish: https://your-publish.adobeaemcloud.com/content/dam/your-site/en/at.js) -->
+<script language="JavaScript" type="text/javascript" src="https://your-publish-server.adobeaemcloud.com/content/dam/sjpa/en/at.js"></script>
+<script>
+  window.adobe = window.adobe || {};
+  window.adobe.target = window.adobe.target || {};
+  window.adobe.target.event = window.adobe.target.event || {};
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.adobe && window.adobe.target && window.adobe.target.event) {
+      window.adobe.target.event.onLoad = window.adobe.target.event.onLoad || function(callback) {
+        if (window.adobe.target.getOffer) { callback(); return; }
+        var checkInterval = setInterval(function() {
+          if (window.adobe.target.getOffer) { clearInterval(checkInterval); callback(); }
+        }, 50);
+      };
+      window.adobe.target.event.onLoad(function() {
+        var preHidingStyle = document.getElementById('at-prehiding');
+        if (preHidingStyle) preHidingStyle.parentNode.removeChild(preHidingStyle);
+      });
+    }
+  });
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <script src="/scripts/aem.js" type="module"></script>
 <script src="/scripts/scripts.js" type="module"></script>
