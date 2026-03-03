@@ -38,8 +38,9 @@
   --light-color-opacity: rgba(255, 255, 255, 0.5);
   --tab-background-color: rgba(0, 0, 0, 0.02);
   /* brand-scoped header/footer variables with sensible defaults */
-  --nav-background-color: var(--brand-nav-background-color, #0000008c);
-  --nav-text-color: var(--brand-nav-text-color, #ffffff);
+  --nav-background-color: var(--brand-nav-background-color, #ffffff);
+  --nav-text-color: var(--brand-nav-text-color, #131313);
+  --nav-link-color: #000000; /* nav list links and text */
   --footer-background-color: var(--brand-footer-background-color, #000);
   --footer-text-color: var(--brand-footer-text-color, #ffffff);
   
@@ -333,7 +334,7 @@ body.red-theme {
 }
 
 body.blue-theme {
-  --main-accent-color: #2563EB;   /* Modern Bright Blue */
+  --main-accent-color: #3fdcc8;
   --link-hover-color: #3B82F6;    /* Lighter Sky Blue */
 }
 
@@ -362,7 +363,17 @@ body.red-theme footer {
   color: var(--text-light);
 }
 
-body.blue-theme header .nav-wrapper,
+body.blue-theme header .nav-wrapper {
+  background-color: #ffffff;
+  color: var(--nav-text-color);
+}
+body.blue-theme header .nav-wrapper nav .nav-sections ul > li > a,
+body.blue-theme header .nav-wrapper nav .nav-sections ul > li > a:hover {
+  color: var(--nav-link-color);
+}
+body.blue-theme header .nav-wrapper nav .nav-sections ul > li > a::before {
+  background: var(--nav-link-color);
+}
 body.blue-theme footer {
   background-color: var(--main-accent-color);
   color: var(--text-light);
@@ -383,12 +394,6 @@ body.green-theme header .nav-wrapper nav .nav-sections ul > li > a::before{
   background: var(--text-light);
 }
 body.green-theme header .nav-wrapper nav .nav-sections ul > li > a:hover{
-  color: var(--text-light);
-}
-body.blue-theme header .nav-wrapper nav .nav-sections ul > li > a::before{
-  background: var(--text-light);
-}
-body.blue-theme header .nav-wrapper nav .nav-sections ul > li > a:hover{
   color: var(--text-light);
 }
 /*theme header-footer*/
