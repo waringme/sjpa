@@ -49,6 +49,8 @@
   --light-font-family: 'Adobe Clean Light', roboto, roboto-fallback, sans-serif;
   --extra-font-family: 'Adobe Clean Extra Bold', roboto, roboto-fallback, sans-serif;
   --black-font-family: 'Adobe Clean Black', roboto, roboto-fallback, sans-serif;
+  /* SJP.co.uk hero uses "NoeDisplaySJP-Bold"; add @font-face and use it here when available */
+  --hero-display-font-family: var(--heading-font-family);
 
   /* body sizes */
   --body-font-size-m: 22px;
