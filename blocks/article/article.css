@@ -1,17 +1,11 @@
-.section.article-container > div > p::after {
-  content: "----------";
-  color: transparent;
-  margin-left: 20px;
-  height: .2px;
-  width: 76px;
-  margin-top: 20px;
-  background: linear-gradient(
-    to bottom,
-    transparent 8px,
-    #008edd 9px,
-    #a2cf42 1px,
-    transparent 10px
-  );
+/* SJP-style article block: clean cards, description xs, CTA at end (sjp.co.uk #main-content) */
+.article a:any-link {
+  text-decoration: none;
+  color: var(--main-accent-color);
+}
+
+.article a:any-link:hover {
+  color: var(--link-hover-color);
 }
 
 .article-link .article a:any-link {
@@ -22,15 +16,14 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  min-height: 255px;
-  max-height: 255px;
+  min-height: 220px;
+  max-height: 280px;
   overflow: hidden;
-  transition: transform 0.4s ease;
-  transform-origin: 50% 50%;
+  transition: transform 0.3s ease;
 }
 
 .article-link .article li:hover img {
-  transform: scale(1.1);
+  transform: scale(1.02);
   width: 100%;
 }
 
@@ -39,48 +32,45 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
 }
 
 .article > ul > li {
-  border: 1px solid var(--accent-background-color);
-  background-color: var(--accent-background-color);
   overflow: hidden;
 }
 
 .article .article-card-body {
-  margin: 16px;
-  padding: 0 0 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
 }
 
 .article .article-card-body ul {
   list-style: disc;
 }
 
+/* Description: extra-small (xs) type, block at end of card */
 .article .article-card-body p,
 .article .article-card-body li {
   font-size: var(--body-font-size-xs);
-  line-height: 28px;
+  line-height: 1.5;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
 }
 
 .article .article-card-body p > strong,
 .article .article-card-body h2 {
-  line-height: 30px;
+  line-height: 1.3;
   font-size: var(--heading-font-size-m);
-  font-weight: 500;
+  font-weight: 600;
+  font-family: var(--heading-font-family);
 }
 
 .article .article-card-image {
   line-height: 0;
-  background-color: transparent;
-}
-
-.article.gradient .article-card-image {
-  border-bottom: var(--border-bottom);
-  border-image-slice: var(--border-image-slice);
-  border-image-source: linear-gradient(to right, var(--gradient-border-start-color), var(--gradient-border-start-color) 0%, var(--gradient-border-end-color) 100%, var(--highlight-background-color) 2%);
-  border-image-width: var(--border-image-width);
+  background-color: var(--light-color);
 }
 
 .article .article-card-body > *:first-child {
@@ -88,124 +78,169 @@
 }
 
 .article .article-card-body h3 {
-  line-height: 30px;
+  line-height: 1.3;
   font-size: var(--heading-font-size-m);
-  font-weight: 500;
-  margin: 0 0 0.25em;
+  font-weight: 600;
+  margin: 0 0 0.35em;
+  font-family: var(--heading-font-family);
+  color: var(--text-color);
 }
 
 .article .article-card-subtitle {
-  margin: 0 0 0.5em;
-  font-size: var(--body-font-size-s, 0.9375rem);
+  margin: 0 0 0.4em;
+  font-size: var(--body-font-size-xs);
+  color: var(--text-color);
 }
 
 .article .article-card-description {
-  margin: 0 0 0.5em;
+  margin: 0 0 1em;
+  flex-grow: 1;
 }
 
 .article .article-card-description p {
   margin: 0;
+  font-size: var(--body-font-size-xs);
+  line-height: 1.5;
 }
 
-/* Card Generic Styles */
+/* CTA at end of card (description xs-end) */
+.article .article-card-body p.button-container {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+.article .article-card-body p.button-container a {
+  font-family: var(--heading-font-family);
+  font-size: var(--body-font-size-s);
+}
+
+/* Card Generic Styles – SJP main content look */
 .article > ul {
   display: flex;
-  gap: 20px;
-  padding: 10px 0;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 16px 0;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .article > ul > li {
-  background: var(--background-color) 0 0 no-repeat padding-box;
-  box-shadow: none;
-  border: none;
-  border-radius: 0;
+  background: var(--background-color);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--light-color);
+  border-radius: 4px;
   padding: 0;
-  height: auto;
   min-height: auto;
-  display: inline-flex;
-  flex: 1;
+  display: flex;
+  flex: 1 1 280px;
   flex-direction: column;
+  font-family: var(--body-font-family);
 }
 
 .article > ul > li .article-card-image {
   position: relative;
   display: block;
+  overflow: hidden;
 }
 
 .article > ul > li .article-card-body {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   background-color: var(--background-color);
-  padding: 20px;
+  padding: 24px;
   box-sizing: border-box;
   margin: 0;
 }
 
 .article > ul > li .article-card-body h1 {
-  margin: 0;
-  font-size: 26px;
-  line-height: 36px;
+  margin: 0 0 0.35em;
+  font-size: var(--heading-font-size-m);
+  line-height: 1.3;
+  font-family: var(--heading-font-family);
+  font-weight: 600;
+  color: var(--text-color);
 }
 
 .article > ul > li .article-card-body p {
-  margin: 10px 0;
-  font-size: 18px;
-  line-height: 26px;
+  margin: 0 0 0.5em;
+  font-size: var(--body-font-size-xs);
+  line-height: 1.5;
+  color: var(--text-color);
 }
 
 .article > ul > li .article-card-body p.button-container {
-  margin: 0;
+  margin-top: auto;
+  margin-bottom: 0;
+  padding-top: 0.5em;
 }
 
-/* Card Image Top */
+/* Card Image Top – SJP section cards */
 .article > ul > li.image-top {
-  background: var(--background-color) 0 0 no-repeat padding-box;
-  box-shadow: 0 3px 20px #00000010;
+  background: var(--background-color);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   border: 1px solid var(--light-color);
   border-radius: 4px;
   flex-direction: column;
 }
 
+.article > ul > li.image-top .article-card-body {
+  padding: 24px;
+}
+
 .article > ul > li.image-top .article-card-body h1 {
-  margin: 0;
-  font-size: 22px;
-  line-height: 32px;
+  margin: 0 0 0.35em;
+  font-size: var(--heading-font-size-m);
+  line-height: 1.3;
 }
 
 .article > ul > li.image-top .article-card-body p {
-  margin: 10px 0;
-  font-size: 16px;
-  line-height: 24px;
+  margin: 0 0 0.5em;
+  font-size: var(--body-font-size-xs);
+  line-height: 1.5;
+}
+
+.article > ul > li.image-top .article-card-body p.button-container {
+  margin-top: auto;
 }
 
 /* Card Image Bottom */
 .article > ul > li.image-bottom {
-  background: var(--background-color) 0 0 no-repeat padding-box;
-  box-shadow: 0 3px 20px #00000010;
+  background: var(--background-color);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   border: 1px solid var(--light-color);
   border-radius: 4px;
   flex-direction: column-reverse;
 }
 
+.article > ul > li.image-bottom .article-card-body {
+  padding: 24px;
+}
+
 .article > ul > li.image-bottom .article-card-body h1 {
-  margin: 0;
-  font-size: 22px;
-  line-height: 32px;
+  margin: 0 0 0.35em;
+  font-size: var(--heading-font-size-m);
+  line-height: 1.3;
 }
 
 .article > ul > li.image-bottom .article-card-body p {
-  margin: 10px 0;
-  font-size: 16px;
-  line-height: 24px;
+  margin: 0 0 0.5em;
+  font-size: var(--body-font-size-xs);
+  line-height: 1.5;
+}
+
+.article > ul > li.image-bottom .article-card-body p.button-container {
+  margin-top: auto;
 }
 
 /* Card Image Left */
 .article > ul > li.image-left {
-  background: var(--background-color) 0 0 no-repeat padding-box;
-  box-shadow: 0 3px 20px #00000010;
+  background: var(--background-color);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   border: 1px solid var(--light-color);
   border-radius: 4px;
   flex-direction: row;
-  gap: 20px;
+  gap: 24px;
 }
 
 .article > ul > li.image-left .article-card-image {
@@ -230,9 +265,13 @@
 }
 
 .article > ul > li.image-left .article-card-body p {
-  margin: 10px 0;
-  font-size: 16px;
-  line-height: 24px;
+  margin: 0 0 0.5em;
+  font-size: var(--body-font-size-xs);
+  line-height: 1.5;
+}
+
+.article > ul > li.image-left .article-card-body p.button-container {
+  margin-top: auto;
 }
 
 .article > ul > li.image-left picture {
@@ -251,12 +290,12 @@
 
 /* Card Image Right */
 .article > ul > li.image-right {
-  background: var(--background-color) 0 0 no-repeat padding-box;
-  box-shadow: 0 3px 20px #00000010;
+  background: var(--background-color);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   border: 1px solid var(--light-color);
   border-radius: 4px;
   flex-direction: row-reverse;
-  gap: 20px;
+  gap: 24px;
 }
 
 .article > ul > li.image-right .article-card-image {
@@ -281,9 +320,13 @@
 }
 
 .article > ul > li.image-right .article-card-body p {
-  margin: 10px 0;
-  font-size: 16px;
-  line-height: 24px;
+  margin: 0 0 0.5em;
+  font-size: var(--body-font-size-xs);
+  line-height: 1.5;
+}
+
+.article > ul > li.image-right .article-card-body p.button-container {
+  margin-top: auto;
 }
 
 .article > ul > li.image-right picture {
@@ -350,9 +393,9 @@
 }
 
 .article > ul > li.teaser-overlay .article-card-body p {
-  margin: 10px 0;
-  font-size: 16px;
-  line-height: 24px;
+  margin: 0 0 0.5em;
+  font-size: var(--body-font-size-xs);
+  line-height: 1.5;
 }
 
 .article > ul > li.teaser-overlay picture {
@@ -422,9 +465,9 @@
 }
 
 .article > ul > li.teaser-card .article-card-body p {
-  margin: 10px 0;
-  font-size: 16px;
-  line-height: 24px;
+  margin: 0 0 0.5em;
+  font-size: var(--body-font-size-xs);
+  line-height: 1.5;
 }
 
 .article > ul > li.teaser-card picture {
