@@ -66,4 +66,30 @@ export default function decorate(block) {
     backgroundStyleDiv.style.display = 'none';
   }
 
+  // Ensure hero has an h1 for the title (content may be in a <p> from the sheet)
+  let titleEl = block.querySelector('h1');
+  if (!titleEl) {
+    const firstRow = block.querySelector(':scope > div:first-child');
+    const firstCell = firstRow?.querySelector(':scope > div');
+    const firstP = firstCell?.querySelector('p:not(.button-container)');
+    if (firstP?.textContent?.trim()) {
+      titleEl = document.createElement('h1');
+      titleEl.innerHTML = firstP.innerHTML;
+      firstP.replaceWith(titleEl);
+    }
+  }
+  if (!titleEl) {
+    const anyP = block.querySelector('p:not(.button-container)');
+    if (anyP?.textContent?.trim()) {
+      titleEl = document.createElement('h1');
+      titleEl.innerHTML = anyP.innerHTML;
+      anyP.replaceWith(titleEl);
+    }
+  }
+
+  // SJP-style: wrap the word "harder" in a span so it can be styled like sjp.co.uk (cursive, teal, larger)
+  if (titleEl?.textContent && /\bharder\b/i.test(titleEl.textContent) && !titleEl.querySelector('.hero-h1-harder')) {
+    const raw = titleEl.innerHTML || titleEl.textContent;
+    titleEl.innerHTML = raw.replace(/\b(harder)\b/gi, '<span class="hero-h1-harder">$1</span>');
+  }
 }

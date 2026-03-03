@@ -30,7 +30,32 @@
   margin: 0 auto;
   color: var(--text-light);
   text-align: center;
-  font-family: var(--black-font-family);
+  font-family: var(--heading-font-family);
+}
+
+/* Hero h1: matched to SJP.co.uk via Playwright (NoeDisplaySJP-Bold, 72px, 72px line-height, 0.16px letter-spacing) */
+.hero h1 {
+  font-family: "NoeDisplaySJP-Bold" !important;
+  font-size: 44px;
+  line-height: 44px;
+  letter-spacing: 0.16px;
+  font-weight: 400;
+}
+
+/* SJP-style "harder" subhead: cursive, teal, larger (matches sjp.co.uk hmBnrSubHead) */
+.hero h1 .hero-h1-harder,
+.hero p .hero-h1-harder,
+.hero .hero-h1-harder {
+  display: block;
+  font-family: "SJPSouthCoast", "South Coast", "Brush Script MT", cursive !important;
+  font-size: 72px;
+  line-height: 80px;
+  letter-spacing: 0.16px;
+  font-weight: 400;
+  margin-top: 0.1em;
+  /* teal - high specificity so it wins over .hero p/h1 color */
+  color: #3fdcc8 !important;
+  -webkit-text-fill-color: #3fdcc8 !important;
 }
 
 /* Special underline (only for h1 by default) */
@@ -335,6 +360,14 @@ picture {
 --------------------------- */
 @media (width >= 900px) {
   .hero { padding: 40px 32px; }
+  .hero h1 {
+    font-size: 72px;
+    line-height: 72px;
+  }
+  .hero h1 .hero-h1-harder {
+    font-size: 144px;
+    line-height: 100px;
+  }
   .hero-wrapper a.button { padding: 14px 28px; font-size: 18px; }
 }
 
@@ -453,6 +486,11 @@ picture {
   color: var(--light-color);
 }
 
+.hero.theme-dark .hero-h1-harder {
+  color: #3fdcc8 !important;
+  -webkit-text-fill-color: #3fdcc8 !important;
+}
+
 .hero.theme-dark .button-container a.button {
   color: var(--light-color);
   border-color: var(--light-color);
@@ -471,6 +509,11 @@ picture {
 .hero.theme-light h6,
 .hero.theme-light p {
   color: var(--dark-color);
+}
+
+.hero.theme-light .hero-h1-harder {
+  color: #3fdcc8 !important;
+  -webkit-text-fill-color: #3fdcc8 !important;
 }
 
 .hero.theme-light .button-container a.button {
