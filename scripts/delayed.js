@@ -10,22 +10,9 @@ import {
   isInternalPage,
 } from './utils.js';
 
-// Adobe Target - start
-
-window.targetGlobalSettings = {
-  bodyHidingEnabled: false,
-};
-
-function loadAT() {
-  function targetPageParams() {
-    return {
-      "at_property": "549d426b-0bcc-be60-ce27-b9923bfcad4f"
-    };
-  }
-    loadScript(window.hlx.codeBasePath+'/scripts/at-lsig.js');
-  
-}
-// Adobe Target - end
+// Adobe Target: at.js is loaded once from head.html (remote); at-lsig.js load removed to avoid duplicate ~166ms execution.
+// targetGlobalSettings and targetPageParams are set in head (bodyHidingEnabled) and can be extended here if needed.
+window.targetGlobalSettings = window.targetGlobalSettings || { bodyHidingEnabled: false };
 
 
 
@@ -100,9 +87,5 @@ function buildTwitterLinks() {
 }
 
 if (!window.location.hostname.includes('localhost')) {
-  
   embedCustomLibraries();
-  if (window.parent && !(window.parent.location.pathname.indexOf('/canvas/') > -1)) {
-    loadAT();
-  }
 }
