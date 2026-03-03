@@ -14,10 +14,10 @@
 
 .article > ul > li img {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
-  min-height: 220px;
-  max-height: 280px;
+  min-height: 280px;
+  max-height: 420px;
   overflow: hidden;
   transition: transform 0.3s ease;
 }
@@ -114,6 +114,29 @@
   font-size: var(--body-font-size-s);
 }
 
+/* Article block CTA: same colour as hero button (--main-accent-color) */
+.article .article-card-body p.button-container a.button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: var(--main-accent-color);
+  color: #fff;
+  border: 2px solid var(--main-accent-color);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.article .article-card-body p.button-container a.button:hover,
+.article .article-card-body p.button-container a.button:focus {
+  background-color: var(--link-hover-color);
+  border-color: var(--link-hover-color);
+  color: #fff;
+}
+
+.article .article-card-body p.button-container a.button::after {
+  display: none;
+}
+
 /* Card Generic Styles – SJP main content look */
 .article > ul {
   display: flex;
@@ -141,6 +164,7 @@
   position: relative;
   display: block;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .article > ul > li .article-card-body {

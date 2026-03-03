@@ -102,10 +102,6 @@ async function buildCardFromCf(cfReq, contentPath, variationname, env, cardStyle
   const title = document.createElement('h3');
   title.textContent = cfReq?.title ?? '';
   title.setAttribute('data-aue-prop', 'title');
-  const subtitle = document.createElement('p');
-  subtitle.classList.add('article-card-subtitle');
-  subtitle.textContent = cfReq?.subtitle ?? '';
-  subtitle.setAttribute('data-aue-prop', 'subtitle');
   const desc = document.createElement('div');
   desc.classList.add('article-card-description');
   desc.setAttribute('data-aue-prop', 'description');
@@ -127,7 +123,7 @@ async function buildCardFromCf(cfReq, contentPath, variationname, env, cardStyle
   a.appendChild(span);
   buttonP.appendChild(a);
 
-  bodyDiv.append(title, subtitle, desc, buttonP);
+  bodyDiv.append(title, desc, buttonP);
   li.append(imageDiv, bodyDiv);
   return li;
 }

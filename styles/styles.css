@@ -353,14 +353,19 @@ body header .nav-wrapper{
   color: var(--nav-text-color);
 }
 body footer {
-  background-color: var(--footer-background-color);
-  color: var(--footer-text-color);
+  background-color: #fff;
+  color: var(--text-color);
+  border-top: 1px solid #000;
 }
 /*theme header-footer*/
-body.red-theme header .nav-wrapper,
-body.red-theme footer {
+body.red-theme header .nav-wrapper {
   background-color: var(--main-accent-color);
   color: var(--text-light);
+}
+body.red-theme footer {
+  background-color: #fff;
+  color: var(--text-color);
+  border-top: 1px solid #000;
 }
 
 body.blue-theme header .nav-wrapper {
@@ -375,13 +380,18 @@ body.blue-theme header .nav-wrapper nav .nav-sections ul > li > a::before {
   background: var(--nav-link-color);
 }
 body.blue-theme footer {
+  background-color: #fff;
+  color: var(--text-color);
+  border-top: 1px solid #000;
+}
+body.green-theme header .nav-wrapper {
   background-color: var(--main-accent-color);
   color: var(--text-light);
 }
-body.green-theme header .nav-wrapper,
 body.green-theme footer {
-  background-color: var(--main-accent-color);
-  color: var(--text-light);
+  background-color: #fff;
+  color: var(--text-color);
+  border-top: 1px solid #000;
 }
 
 body.red-theme header .nav-wrapper nav .nav-sections ul > li > a::before{
