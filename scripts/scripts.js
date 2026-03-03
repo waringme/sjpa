@@ -383,13 +383,18 @@ async function loadEager(doc) {
  */
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
-  await loadSections(main);
+  const headerEl = doc.querySelector('header');
+  const footerEl = doc.querySelector('footer');
+  // Load header/nav in parallel with sections so nav appears as soon as possible
+  await Promise.all([
+    loadSections(main),
+    headerEl ? loadHeader(headerEl) : Promise.resolve(),
+    footerEl ? loadFooter(footerEl) : Promise.resolve(),
+  ]);
   decorateSectionImages(doc);
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
-  loadHeader(doc.querySelector('header'));
-  loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
