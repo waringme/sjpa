@@ -7,6 +7,8 @@
 }
 
 .hero {
+  --brand-light-text-color: #ffffff;
+  --text-light: #ffffff;
   position: relative;
   padding: 40px 24px;
   min-height: 700px;
@@ -196,6 +198,7 @@
 
 /* Image Background Text Left - Text overlaid on background image, left-aligned */
 .hero.image-background-text-left {
+  --brand-light-text-color: #ffffff;
   justify-content: flex-start;
   align-items: center;
   text-align: left;

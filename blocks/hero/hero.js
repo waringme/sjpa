@@ -11,7 +11,13 @@ export default function decorate(block) {
   const enableUnderline = block.querySelector(':scope div:nth-child(3) > div')?.textContent?.trim() || 'true';
   
   // Get the layout Style from the block content (4th div)
-  const layoutStyle = block.querySelector(':scope div:nth-child(4) > div')?.textContent?.trim() || 'overlay';
+  let layoutStyle = block.querySelector(':scope div:nth-child(4) > div')?.textContent?.trim() || 'overlay';
+  // Homepage: use same layout as /en/health-wellness (no overlay), so hero matches other pages
+  const path = typeof window !== 'undefined' && window.location?.pathname?.replace(/\/$/, '') || '';
+  const isHome = path === '' || path === '/en' || path === '/';
+  if (isHome && layoutStyle === 'overlay') {
+    layoutStyle = 'image-background-text-left';
+  }
 
   // Get the CTA style from the block content (5th div)
   const ctaStyle = block.querySelector(':scope div:nth-child(5) > div')?.textContent?.trim() || 'default';

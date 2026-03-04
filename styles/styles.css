@@ -27,7 +27,7 @@
   --dark-color: var(--brand-dark-color, #131313);
   --light-color: var(--brand-light-color, #dcdcdc);
   --text-color: var(--brand-text-color, #131313);
-  --text-light: var(--brand-light-text-color, #ffffff);
+  --brand-light-text-color: #ffffff;
   --text-disabled:rgb(113, 113, 113);
   --link-color: var(--brand-link-color, #131313);
   --link-hover-color: var(--brand-link-hover-color, #F97316);
