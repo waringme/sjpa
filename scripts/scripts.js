@@ -398,6 +398,16 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
+
+  // Load Adobe Target experience early (no 3s delay) so hero/experience appears quickly when returning to home
+  if (!window.location.hostname.includes('localhost')
+    && (!window.parent || window.parent.location.pathname.indexOf('/canvas/') <= -1)) {
+    window.targetGlobalSettings = window.targetGlobalSettings || { bodyHidingEnabled: false };
+    window.targetPageParams = window.targetPageParams || function () {
+      return { at_property: '549d426b-0bcc-be60-ce27-b9923bfcad4f' };
+    };
+    loadScript(`${window.hlx.codeBasePath}/scripts/at-lsig.js`);
+  }
 }
 
 function isDMOpenAPIUrl(src) {

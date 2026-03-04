@@ -99,7 +99,5 @@ function buildTwitterLinks() {
 
 if (!window.location.hostname.includes('localhost')) {
   embedCustomLibraries();
-  if (window.parent && !(window.parent.location.pathname.indexOf('/canvas/') > -1)) {
-    loadAT();
-  }
+  // Target (at-lsig) is now loaded early from scripts.js loadLazy(); skip duplicate load here
 }
