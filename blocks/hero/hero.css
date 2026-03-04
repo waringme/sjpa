@@ -6,6 +6,14 @@
   padding: 0;
 }
 
+/* Brief pre-hide hero while Target applies to avoid flicker (class removed from body after ~350ms) */
+.hero-container {
+  transition: opacity 0.2s ease-out;
+}
+body.hero-wait-target .hero-container {
+  opacity: 0;
+}
+
 .hero {
   --brand-light-text-color: #ffffff;
   --text-light: #ffffff;
