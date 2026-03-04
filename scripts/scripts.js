@@ -399,19 +399,14 @@ async function loadLazy(doc) {
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
 
-  // Load Adobe Target experience early (no 3s delay); brief pre-hide hero to avoid flicker when offer applies
+  // Load Adobe Target experience early (no 3s delay); at-lsig.js preloaded in head for faster apply
   if (!window.location.hostname.includes('localhost')
     && (!window.parent || window.parent.location.pathname.indexOf('/canvas/') <= -1)) {
     window.targetGlobalSettings = window.targetGlobalSettings || { bodyHidingEnabled: false };
     window.targetPageParams = window.targetPageParams || function () {
       return { at_property: '549d426b-0bcc-be60-ce27-b9923bfcad4f' };
     };
-    document.body.classList.add('hero-wait-target');
-    const removeHeroPrehide = () => document.body.classList.remove('hero-wait-target');
-    loadScript(`${window.hlx.codeBasePath}/scripts/at-lsig.js`).then(() => {
-      setTimeout(removeHeroPrehide, 350);
-    }).catch(removeHeroPrehide);
-    setTimeout(removeHeroPrehide, 1200);
+    loadScript(`${window.hlx.codeBasePath}/scripts/at-lsig.js`);
   }
 }
 
