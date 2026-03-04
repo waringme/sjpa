@@ -385,6 +385,17 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
   const headerEl = doc.querySelector('header');
   const footerEl = doc.querySelector('footer');
+
+  // Load Adobe Target before sections/blocks so experience is ready before article blocks fetch content fragments
+  if (!window.location.hostname.includes('localhost')
+    && (!window.parent || window.parent.location.pathname.indexOf('/canvas/') <= -1)) {
+    window.targetGlobalSettings = window.targetGlobalSettings || { bodyHidingEnabled: false };
+    window.targetPageParams = window.targetPageParams || function () {
+      return { at_property: '549d426b-0bcc-be60-ce27-b9923bfcad4f' };
+    };
+    await loadScript(`${window.hlx.codeBasePath}/scripts/at-lsig.js`);
+  }
+
   // Load header/nav in parallel with sections so nav appears as soon as possible
   await Promise.all([
     loadSections(main),
@@ -398,16 +409,6 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
-
-  // Load Adobe Target experience early (no 3s delay); at-lsig.js preloaded in head for faster apply
-  if (!window.location.hostname.includes('localhost')
-    && (!window.parent || window.parent.location.pathname.indexOf('/canvas/') <= -1)) {
-    window.targetGlobalSettings = window.targetGlobalSettings || { bodyHidingEnabled: false };
-    window.targetPageParams = window.targetPageParams || function () {
-      return { at_property: '549d426b-0bcc-be60-ce27-b9923bfcad4f' };
-    };
-    loadScript(`${window.hlx.codeBasePath}/scripts/at-lsig.js`);
-  }
 }
 
 function isDMOpenAPIUrl(src) {
