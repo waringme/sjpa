@@ -44,7 +44,7 @@
   font-weight: 400;
 }
 
-/* SJP-style "harder" subhead: cursive, teal, larger (matches sjp.co.uk hmBnrSubHead) */
+/* SJP-style "harder" subhead: cursive, teal, larger, overlaps line above (matches sjp.co.uk hmBnrSubHead) */
 .hero h1 .hero-h1-harder,
 .hero p .hero-h1-harder,
 .hero .hero-h1-harder {
@@ -54,10 +54,15 @@
   line-height: 80px;
   letter-spacing: 0.16px;
   font-weight: 400;
-  margin-top: 0.1em;
+  margin-top: -0.35em;
   /* teal - high specificity so it wins over .hero p/h1 color */
   color: #3fdcc8 !important;
   -webkit-text-fill-color: #3fdcc8 !important;
+}
+
+/* When "harder" is in its own h1 (second line), pull it up to overlap the first line */
+.hero h1 + h1 {
+  margin-top: -0.5em;
 }
 
 /* Special underline (only for h1 by default) */

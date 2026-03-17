@@ -93,9 +93,19 @@ export default function decorate(block) {
     }
   }
 
-  // SJP-style: wrap the word "harder" in a span so it can be styled like sjp.co.uk (cursive, teal, larger)
-  if (titleEl?.textContent && /\bharder\b/i.test(titleEl.textContent) && !titleEl.querySelector('.hero-h1-harder')) {
-    const raw = titleEl.innerHTML || titleEl.textContent;
-    titleEl.innerHTML = raw.replace(/\b(harder)\b/gi, '<span class="hero-h1-harder">$1</span>');
-  }
+  // SJP-style: wrap the word "harder" in a span in any hero heading so it can be styled (cursive, teal, larger) like sjp.co.uk
+  block.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((heading) => {
+    if (heading.textContent && /\bharder\b/i.test(heading.textContent) && !heading.querySelector('.hero-h1-harder')) {
+      const raw = heading.innerHTML || heading.textContent;
+      heading.innerHTML = raw.replace(/\b(harder)\b/gi, '<span class="hero-h1-harder">$1</span>');
+    }
+  });
+
+  // Same styling for "harder" in hero paragraphs (e.g. 3rd line)
+  block.querySelectorAll('p:not(.button-container)').forEach((p) => {
+    if (p.textContent && /\bharder\b/i.test(p.textContent) && !p.querySelector('.hero-h1-harder')) {
+      const raw = p.innerHTML || p.textContent;
+      p.innerHTML = raw.replace(/\b(harder)\b/gi, '<span class="hero-h1-harder">$1</span>');
+    }
+  });
 }
