@@ -40,6 +40,14 @@
   overflow: hidden;
 }
 
+/* Wrapper for CF-backed cards so UE opens content fragment editor (layout unchanged) */
+.article > ul > li > .article-card-block {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
 .article .article-card-body {
   display: flex;
   flex-direction: column;
