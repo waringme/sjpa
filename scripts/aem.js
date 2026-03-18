@@ -334,6 +334,7 @@ function createOptimizedPicture(
     } else {
       const img = document.createElement('img');
       img.setAttribute('loading', eager ? 'eager' : 'lazy');
+      img.setAttribute('decoding', 'async');
       if (fetchpriority || eager) {
         img.setAttribute('fetchpriority', fetchpriority || 'high');
       }
@@ -727,6 +728,7 @@ async function waitForFirstImage(section) {
     if (lcpCandidate && !lcpCandidate.complete) {
       lcpCandidate.setAttribute('loading', 'eager');
       lcpCandidate.setAttribute('fetchpriority', 'high');
+      lcpCandidate.setAttribute('decoding', 'async');
       lcpCandidate.addEventListener('load', resolve);
       lcpCandidate.addEventListener('error', resolve);
     } else {

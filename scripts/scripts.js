@@ -399,21 +399,23 @@ async function loadLazy(doc) {
   const headerEl = doc.querySelector('header');
   const footerEl = doc.querySelector('footer');
 
-  // Load Adobe Target before sections/blocks so experience is ready before article blocks fetch content fragments
+  // Load Target in parallel with sections/header/footer so main content and LCP aren't blocked by the script
+  let targetPromise = Promise.resolve();
   if (!window.location.hostname.includes('localhost')
     && (!window.parent || window.parent.location.pathname.indexOf('/canvas/') <= -1)) {
     window.targetGlobalSettings = window.targetGlobalSettings || { bodyHidingEnabled: false };
     window.targetPageParams = window.targetPageParams || function () {
       return { at_property: '549d426b-0bcc-be60-ce27-b9923bfcad4f' };
     };
-    await loadScript(`${window.hlx.codeBasePath}/scripts/at-lsig.js`);
+    targetPromise = loadScript(`${window.hlx.codeBasePath}/scripts/at-lsig.js`);
   }
 
-  // Load header/nav in parallel with sections so nav appears as soon as possible
+  // Load header/nav and sections in parallel with Target so LCP and interactivity improve
   await Promise.all([
     loadSections(main),
     headerEl ? loadHeader(headerEl) : Promise.resolve(),
     footerEl ? loadFooter(footerEl) : Promise.resolve(),
+    targetPromise,
   ]);
   decorateSectionImages(doc);
   const { hash } = window.location;
