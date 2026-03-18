@@ -1,5 +1,11 @@
-<!-- Adobe Target: early hints so experience loads faster -->
+<!-- Performance: preconnect and preload critical path first -->
 <link rel="preconnect" href="https://publish-p147324-e1846469.adobeaemcloud.com" crossorigin/>
+<link rel="preconnect" href="https://assets.adobedtm.com" crossorigin/>
+<link rel="preconnect" href="https://s7d1.scene7.com" crossorigin/>
+<link rel="preload" href="/styles/styles.css" as="style"/>
+<link rel="preload" href="/styles/fonts.css" as="style"/>
+<link rel="preload" href="/fonts/NoeDisplaySJP-Bold.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="/fonts/SJPSouthCoast.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="preload" href="https://publish-p147324-e1846469.adobeaemcloud.com/content/dam/st-james-place/en/at.js" as="script"/>
 <link rel="preload" href="/scripts/at-lsig.js" as="script"/>
 <!-- Adobe Target: config must be set before at.js runs -->
